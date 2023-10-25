@@ -17,7 +17,7 @@ const getDogsHandler = async (req, res) => {
     if (allDogs.length > 0) {
       res.status(200).json(allDogs);
     } else {
-      res.status(404).json({ error: "Dogs not found" });
+      res.status(404).json({ message: "Dogs not found" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -39,9 +39,13 @@ const getBreedByIdHandler = async (req, res) => {
     const { id } = req.params;
     const source = isNaN(id) ? "db" : "api";
     const response = await getBreedById(id, source);
-    res.status(200).json(response);
+    if (response) {
+      res.status(200).json(response);
+    } else {
+      res.status(404).json({ message: "Breed not found" });
+    }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -56,7 +60,7 @@ const createDogHandler = async (req, res) => {
       image_id,
       temperament
     );
-    res.status(200).json(newDog);
+    res.status(201).json(newDog);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
