@@ -1,6 +1,7 @@
 const axios = require("axios");
-const { Dog } = require("../../db");
+require("dotenv").config();
 const { URL, API_KEY } = process.env;
+const { Dog } = require("../../db");
 
 const getBreedById = async (id, source) => {
   const dog =

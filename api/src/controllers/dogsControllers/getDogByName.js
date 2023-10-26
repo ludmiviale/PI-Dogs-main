@@ -1,14 +1,9 @@
 const axios = require("axios");
-const { Dog } = require("../../db");
+require("dotenv").config();
 const { URL, API_KEY } = process.env;
+const { Dog } = require("../../db");
 
-const getDogByName = async (name) => {
-  const dog =
-    source === "api"
-      ? (await axios(`${URL}/?name=${name}/?api_key=${API_KEY}`)).data
-      : await Dog.findOne({ where: { name: name } });
-  return dog;
-};
+const getDogByName = async (name) => {};
 
 module.exports = {
   getDogByName,

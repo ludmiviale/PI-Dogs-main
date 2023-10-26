@@ -33,8 +33,8 @@ const getAllDogsFromDB = async () => {
       height: dog.height,
       weight: dog.weight,
       life_span: dog.life_span,
-      reference_image_id: dog.image.url,
-      temperaments: dog.Temperament.map((temperament) => temperament.name),
+      //reference_image_id: dog.image,
+      //temperaments: dog.Temperament.map((temperament) => temperament.name),
     };
   });
 };
