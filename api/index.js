@@ -18,10 +18,14 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
+const {
+  getAllTemperaments,
+} = require("./src/controllers/temperamentControllers/getAllTemperaments.js");
 const { conn } = require("./src/db.js");
 
 // cuando levanto mi servidor, quiero que se genere la vía de comunicación
 conn.sync({ force: true }).then(() => {
+  getAllTemperaments();
   server.listen(3001, () => {
     console.log("%s listening at 3001");
   });
