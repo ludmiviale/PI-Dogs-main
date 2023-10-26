@@ -10,8 +10,8 @@ const { createDog } = require("../controllers/dogsControllers/createDog");
 // invoca al controller, porque el handler nunca interactúa con fuentes externas
 
 const getDogsHandler = async (req, res) => {
+  const { name } = req.query;
   try {
-    const { name } = req.query;
     if (name) {
       const dogByName = await getDogByName(name);
       res.status(200).json(dogByName);
@@ -30,19 +30,9 @@ const getDogsHandler = async (req, res) => {
   }
 };
 
-const getDogByNameHandler = async (req, res) => {
-  try {
-    const { name } = req.query;
-    const response = await getDogByName(name);
-    return res.status(200).json(response);
-  } catch (error) {
-    return res.status(404).json({ error: error.message });
-  }
-};
-
 const getBreedByIdHandler = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
     const source = isNaN(id) ? "db" : "api";
     const response = await getBreedById(id, source);
     if (response) {
@@ -56,15 +46,16 @@ const getBreedByIdHandler = async (req, res) => {
 };
 
 const createDogHandler = async (req, res) => {
+  const { name, height, weight, life_span, reference_image_id, temperaments } =
+    req.body;
   try {
-    const { name, height, weight, life_span, image_id, temperament } = req.body;
     const newDog = await createDog(
       name,
       height,
       weight,
       life_span,
-      image_id,
-      temperament
+      reference_image_id,
+      temperaments
     );
     res.status(201).json(newDog);
   } catch (error) {
@@ -74,7 +65,6 @@ const createDogHandler = async (req, res) => {
 
 module.exports = {
   getDogsHandler,
-  getDogByNameHandler,
   getBreedByIdHandler,
   createDogHandler,
 };
