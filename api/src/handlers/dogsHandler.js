@@ -1,7 +1,4 @@
-const {
-  getAllDogsFromApi,
-  getAllDogsFromDB,
-} = require("../controllers/dogsControllers/getAllDogs");
+const { getAllDogs } = require("../controllers/dogsControllers/getAllDogs");
 const { getDogByName } = require("../controllers/dogsControllers/getDogByName");
 const { getBreedById } = require("../controllers/dogsControllers/getBreedById");
 const { createDog } = require("../controllers/dogsControllers/createDog");
@@ -16,9 +13,7 @@ const getDogsHandler = async (req, res) => {
       const dogByName = await getDogByName(name);
       res.status(200).json(dogByName);
     } else {
-      const dogsFromApi = await getAllDogsFromApi();
-      const dogsFromDB = await getAllDogsFromDB();
-      const allDogs = [...dogsFromApi, ...dogsFromDB];
+      const allDogs = await getAllDogs();
       if (allDogs.length > 0) {
         res.status(200).json(allDogs);
       } else {
