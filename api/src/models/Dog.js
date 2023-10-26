@@ -21,24 +21,20 @@ module.exports = (sequelize) => {
         },
       },
       height: {
-        type: DataTypes.DECIMAL(5, 2),
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          noNegativeValue(value) {
-            if (value < 0) {
-              throw new Error("Height cannot be negative");
-            }
+          notNull: {
+            msg: "Please enter the height",
           },
         },
       },
       weight: {
-        type: DataTypes.DECIMAL(5, 2),
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          noNegativeValue(value) {
-            if (value < 0) {
-              throw new Error("Weight cannot be negative");
-            }
+          notNull: {
+            msg: "Please enter the weight",
           },
         },
       },
@@ -53,7 +49,14 @@ module.exports = (sequelize) => {
       },
       reference_image_id: {
         type: DataTypes.STRING,
-        allowNull: true,
+        validate: {
+          isURL: {
+            args: {
+              protocols: ["http", "https"],
+            },
+            msg: "Must be a valid URL",
+          },
+        },
       },
     },
     { timestamps: false }
