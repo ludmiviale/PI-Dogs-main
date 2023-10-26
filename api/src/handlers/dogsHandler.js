@@ -11,13 +11,19 @@ const { createDog } = require("../controllers/dogsControllers/createDog");
 
 const getDogsHandler = async (req, res) => {
   try {
-    const dogsFromApi = await getAllDogsFromApi();
-    const dogsFromDB = await getAllDogsFromDB();
-    const allDogs = [...dogsFromApi, ...dogsFromDB];
-    if (allDogs.length > 0) {
-      res.status(200).json(allDogs);
+    const { name } = req.query;
+    if (name) {
+      const dogByName = await getDogByName(name);
+      res.status(200).json(dogByName);
     } else {
-      res.status(404).json({ message: "Dogs not found" });
+      const dogsFromApi = await getAllDogsFromApi();
+      const dogsFromDB = await getAllDogsFromDB();
+      const allDogs = [...dogsFromApi, ...dogsFromDB];
+      if (allDogs.length > 0) {
+        res.status(200).json(allDogs);
+      } else {
+        res.status(404).json({ message: "Dogs not found" });
+      }
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
