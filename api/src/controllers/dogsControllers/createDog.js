@@ -1,16 +1,32 @@
-const { Dog } = require("../../db");
+const { Dog, Temperament } = require("../../db");
 
-// las funciones de la base de datos son asíncronas
-// hay que esperar que las peticiones a fuentes externas den una respuesta
-const createDog = async (name, height, weight, life_span) => {
-  return await Dog.create({
+const createDog = async (
+  name,
+  height,
+  weight,
+  life_span,
+  reference_image_id,
+  temperaments
+) => {
+  const newDog = await Dog.create({
     name,
     height,
     weight,
     life_span,
+    reference_image_id,
   });
-  //temperament.map(temperament)
-  //newDog.addTemperament(temperament)
+
+  const allTemperaments = await Temperament.findAll({
+    where: {
+      name: temperaments,
+    },
+  });
+
+  await Promise.all(
+    allTemperaments.map((temperament) => newDog.addTemperament(temperament))
+  );
+
+  return newDog;
 };
 
 module.exports = {
