@@ -1,8 +1,8 @@
-const { getAllDogs } = require("../controllers/dogsControllers/getAllDogs");
-const { getDogByName } = require("../controllers/dogsControllers/getDogByName");
-const { getBreedById } = require("../controllers/dogsControllers/getBreedById");
-const { createDog } = require("../controllers/dogsControllers/createDog");
-const { updateDog } = require("../controllers/dogsControllers/updateDog");
+const getAllDogs = require("../controllers/dogsControllers/getAllDogs");
+const getDogByName = require("../controllers/dogsControllers/getDogByName");
+const getBreedById = require("../controllers/dogsControllers/getBreedById");
+const createDog = require("../controllers/dogsControllers/createDog");
+const updateDog = require("../controllers/dogsControllers/updateDog");
 const deleteDog = require("../controllers/dogsControllers/deleteDog");
 
 // el handler es una función que se va a encargar de recibir la req, de unificar datos y devolver la respuesta
