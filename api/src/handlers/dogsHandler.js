@@ -3,6 +3,7 @@ const { getDogByName } = require("../controllers/dogsControllers/getDogByName");
 const { getBreedById } = require("../controllers/dogsControllers/getBreedById");
 const { createDog } = require("../controllers/dogsControllers/createDog");
 const { updateDog } = require("../controllers/dogsControllers/updateDog");
+const deleteDog = require("../controllers/dogsControllers/deleteDog");
 
 // el handler es una función que se va a encargar de recibir la req, de unificar datos y devolver la respuesta
 // invoca al controller, porque el handler nunca interactúa con fuentes externas
@@ -61,16 +62,20 @@ const createDogHandler = async (req, res) => {
 
 const updateDogHandler = async (req, res) => {
   const { id } = req.params;
-  const { height, newHeight, weight, newWeight } = req.body;
+  const { name, newName } = req.body;
   try {
-    const updatedDog = await updateDog(
-      id,
-      height,
-      newHeight,
-      weight,
-      newWeight
-    );
+    const updatedDog = await updateDog(id, name, newName);
     res.status(200).json(updatedDog);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const deleteDogHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await deleteDog(id);
+    res.status(200).json({ message: "Dog deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -81,4 +86,5 @@ module.exports = {
   getBreedByIdHandler,
   createDogHandler,
   updateDogHandler,
+  deleteDogHandler,
 };
