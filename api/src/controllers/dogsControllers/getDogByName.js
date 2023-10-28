@@ -25,6 +25,4 @@ const getDogByName = async (name) => {
   return results;
 };
 
-module.exports = {
-  getDogByName,
-};
+module.exports = getDogByName;

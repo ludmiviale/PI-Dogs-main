@@ -16,6 +16,4 @@ const getAllDogs = async () => {
   return [...dogApi, ...dogDB];
 };
 
-module.exports = {
-  getAllDogs,
-};
+module.exports = getAllDogs;

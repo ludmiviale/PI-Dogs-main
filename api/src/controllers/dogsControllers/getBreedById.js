@@ -37,6 +37,4 @@ const getBreedById = async (id, source) => {
   }
 };
 
-module.exports = {
-  getBreedById,
-};
+module.exports = getBreedById;

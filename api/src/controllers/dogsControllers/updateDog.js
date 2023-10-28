@@ -1,18 +1,13 @@
 const { Dog } = require("../../db");
 
-const updateDog = async (id, newHeight, newWeight) => {
+const updateDog = async (id, newName) => {
   const dogFound = await Dog.findByPk(id);
   if (dogFound) {
-    await Dog.update(
-      { height: newHeight, weight: newWeight },
-      { where: { id: id } }
-    );
+    await Dog.update({ name: newName }, { where: { id: id } });
     return "Dog updated successfully";
   } else {
     return "Not found";
   }
 };
 
-module.exports = {
-  updateDog,
-};
+module.exports = updateDog;

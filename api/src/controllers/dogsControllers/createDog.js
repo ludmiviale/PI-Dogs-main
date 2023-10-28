@@ -29,6 +29,4 @@ const createDog = async (
   return newDog;
 };
 
-module.exports = {
-  createDog,
-};
+module.exports = createDog;
