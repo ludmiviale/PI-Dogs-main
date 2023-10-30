@@ -22,8 +22,8 @@ const createDog = async (
     },
   });
 
-  await Promise.all(
-    allTemperaments.map((temperament) => newDog.addTemperament(temperament))
+  await allTemperaments.map((temperament) =>
+    newDog.addTemperament(temperament)
   );
 
   return newDog;
