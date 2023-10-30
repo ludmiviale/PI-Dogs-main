@@ -2,6 +2,7 @@ const axios = require("axios");
 require("dotenv").config();
 const { URL, API_KEY } = process.env;
 const { Dog } = require("../../db");
+const { Op } = require("sequelize");
 const { infoApiCleaner } = require("../../utils/index");
 
 const getDogByName = async (name) => {
@@ -14,7 +15,13 @@ const getDogByName = async (name) => {
     dog.name.toLowerCase().includes(lowercaseName)
   );
 
-  const dogDB = await Dog.findAll({ where: { name: lowercaseName } });
+  const dogDB = await Dog.findAll({
+    where: {
+      name: {
+        [Op.iLike]: `%${lowercaseName}%`,
+      },
+    },
+  });
 
   const results = [...dogFiltered, ...dogDB];
 
