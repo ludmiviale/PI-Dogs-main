@@ -1,4 +1,4 @@
-function Navbar({ handleChange, handleSubmit }) {
+function Nav({ handleChange, handleSubmit }) {
   return (
     <div>
       <form onSubmit={(event) => handleSubmit(event)}>
@@ -13,4 +13,4 @@ function Navbar({ handleChange, handleSubmit }) {
   );
 }
 
-export default Navbar;
+export default Nav;
