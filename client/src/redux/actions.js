@@ -1,13 +1,24 @@
-import { GET_ALL_DOGS } from "./action-types";
+import { GET_ALL_DOGS, GET_DOG_BY_NAME } from "./action-types";
 import axios from "axios";
 
-const URL = "https://api.thedogapi.com/v1/breeds";
-
-export const getDogs = () => {
+export const getAllDogs = () => {
+  const endpoint = "http://localhost:3001/dogs";
   return async (dispatch) => {
     try {
-      const { data } = await axios(URL);
+      const { data } = await axios(endpoint);
       return dispatch({ type: GET_ALL_DOGS, payload: data });
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
+};
+
+export const getDogByName = (name) => {
+  const endpoint = `http://localhost:3001/dogs/?name=${name}`;
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(endpoint);
+      return dispatch({ type: GET_DOG_BY_NAME, payload: data });
     } catch (error) {
       throw Error(error.message);
     }
