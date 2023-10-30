@@ -1,9 +1,11 @@
-function Card() {
+function Card({ dog }) {
+  const { name, weight, temperament, reference_image_id } = dog;
   return (
     <div>
-      <h2>Name:</h2>
-      <p>Temperamets:</p>
-      <p>Weight:</p>
+      <h2>{name}</h2>
+      <p>{temperament}</p>
+      <p>{weight}</p>
+      <img src={reference_image_id} alt="dog photo" />
     </div>
   );
 }
