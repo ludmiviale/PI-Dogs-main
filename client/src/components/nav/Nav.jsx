@@ -1,9 +1,10 @@
-function Nav({ handleChange, handleSubmit }) {
+const Nav = ({ handleChange, handleSubmit, searchString }) => {
   return (
     <div>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           type="search"
+          value={searchString}
           placeholder="Search breeds"
           onChange={(event) => handleChange(event)}
         />
@@ -11,6 +12,6 @@ function Nav({ handleChange, handleSubmit }) {
       </form>
     </div>
   );
-}
+};
 
 export default Nav;
