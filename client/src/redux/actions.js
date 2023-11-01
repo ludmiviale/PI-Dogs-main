@@ -1,4 +1,9 @@
-import { GET_ALL_DOGS, GET_DOG_BY_NAME } from "./action-types";
+import {
+  GET_ALL_DOGS,
+  GET_DOG_BY_NAME,
+  GET_DOG_BY_ID,
+  DOGS_CLEANER,
+} from "./action-types";
 import axios from "axios";
 
 export const getAllDogs = () => {
@@ -24,3 +29,17 @@ export const getDogByName = (name) => {
     }
   };
 };
+
+export const getDogById = (id) => {
+  const endpoint = `http://localhost:3001/dogs/${id}`;
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(endpoint);
+      return dispatch({ type: GET_DOG_BY_ID, payload: data });
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
+};
+
+export const dogsCleaner = () => ({ type: DOGS_CLEANER });
