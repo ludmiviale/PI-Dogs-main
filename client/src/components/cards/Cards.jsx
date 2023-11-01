@@ -1,6 +1,6 @@
 import Card from "../card/Card";
 
-function Cards({ allDogs }) {
+const Cards = ({ allDogs }) => {
   const dogsList = allDogs;
 
   return (
@@ -10,6 +10,6 @@ function Cards({ allDogs }) {
       ))}
     </div>
   );
-}
+};
 
 export default Cards;
