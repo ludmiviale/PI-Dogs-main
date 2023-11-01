@@ -25,10 +25,6 @@ const getDogByName = async (name) => {
 
   const results = [...dogFiltered, ...dogDB];
 
-  if (results.length === 0) {
-    return "No dog breeds were found with that name";
-  }
-
   return results;
 };
 
