@@ -9,7 +9,7 @@ const Card = ({ dog }) => {
       </Link>
       <p>{temperament}</p>
       <p>{weight}</p>
-      <img src={reference_image_id} alt="dog photo" />
+      <img src={reference_image_id} alt="dog photo" width="500px" />
     </div>
   );
 };
