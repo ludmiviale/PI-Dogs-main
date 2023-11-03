@@ -1,9 +1,4 @@
-import {
-  GET_ALL_DOGS,
-  GET_DOG_BY_NAME,
-  GET_DOG_BY_ID,
-  DOGS_CLEANER,
-} from "./action-types";
+import { GET_DOGS, GET_DOG_BY_ID, DOGS_CLEANER } from "./action-types";
 
 let initialState = {
   allDogs: [],
@@ -14,12 +9,7 @@ let initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_DOGS:
-      return {
-        ...state,
-        allDogs: action.payload,
-      };
-    case GET_DOG_BY_NAME:
+    case GET_DOGS:
       return {
         ...state,
         allDogs: action.payload,
