@@ -17,7 +17,6 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleChange = (event) => {
-    event.preventDefault();
     setSearchString(event.target.value);
   };
 
@@ -37,9 +36,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(dogsCleaner());
     let queryName = searchParams.get("name");
-    if (queryName === null) {
-      queryName = "";
-    }
+    queryName = queryName === null ? "" : queryName;
     setSearchString(queryName);
     fetchDogs(queryName);
   }, []);
@@ -68,7 +65,11 @@ const Home = () => {
         currentPage={currentPage}
         totalPages={totalPages}
       />
-      <Cards dogsToDisplay={dogsToDisplay} />
+      {allDogs.length > 0 ? (
+        <Cards dogsToDisplay={dogsToDisplay} />
+      ) : (
+        <p>There are no dogs with that name</p>
+      )}
     </div>
   );
 };
