@@ -1,11 +1,9 @@
 import Card from "../card/Card";
 
-const Cards = ({ allDogs }) => {
-  const dogsList = allDogs;
-
+const Cards = ({ dogsToDisplay }) => {
   return (
     <div>
-      {dogsList?.map((dog) => (
+      {dogsToDisplay?.map((dog) => (
         <Card key={dog.id} dog={dog} />
       ))}
     </div>
