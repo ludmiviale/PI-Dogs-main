@@ -25,7 +25,7 @@ const Detail = () => {
       <p>{dogDetail.height}</p>
       <p>{dogDetail.life_span}</p>
       <p>{dogDetail.temperament}</p>
-      <img src={dogDetail.reference_image_id} alt="dog photo" />
+      <img src={dogDetail.reference_image_id} alt="dog photo" width="500px" />
       <p>{dogDetail.id}</p>
     </div>
   );
