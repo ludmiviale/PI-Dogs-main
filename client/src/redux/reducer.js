@@ -1,9 +1,16 @@
-import { GET_DOGS, GET_DOG_BY_ID, DOGS_CLEANER } from "./action-types";
+import {
+  GET_DOGS,
+  GET_DOG_BY_ID,
+  DOGS_CLEANER,
+  CREATE_DOG,
+  GET_ALL_TEMPERAMENTS,
+} from "./action-types";
 
 let initialState = {
   allDogs: [],
-  allDogsCopy: [],
+  allDogsCopy: [], //para filtros, después volver al allDogs original
   dogDetail: [],
+  newDog: [],
   temperaments: [],
 };
 
@@ -24,6 +31,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         allDogs: [],
         dogDetail: [],
+      };
+    case CREATE_DOG:
+      return {
+        ...state,
+        newDog: [...state.newDog, action.payload],
+      };
+    case GET_ALL_TEMPERAMENTS:
+      return {
+        ...state,
+        temperaments: action.payload,
       };
     default:
       return state;
