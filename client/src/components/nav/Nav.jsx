@@ -7,13 +7,9 @@ const Nav = ({
   searchString,
   handleFilterSource,
   handleFilterTemperament,
+  handleSortAlphabetically,
 }) => {
   const temperaments = useSelector((state) => state.temperaments);
-  const sources = [
-    { id: "all", name: "All" },
-    { id: "api", name: "API" },
-    { id: "database", name: "Database" },
-  ];
 
   return (
     <div>
@@ -40,6 +36,12 @@ const Nav = ({
           handleChange={handleFilterTemperament}
           keySelector={(value) => value.id}
         />
+
+        <label htmlFor="sortAlphabetically">Sort alphabetically:</label>
+        <select name="sortAlphabetically" onChange={handleSortAlphabetically}>
+          <option value="ascending">A-Z</option>
+          <option value="descending">Z-A</option>
+        </select>
       </form>
     </div>
   );
