@@ -130,9 +130,11 @@ const Create = () => {
       <label htmlFor="temperaments">Temperaments:</label>
       <Select
         name="temperaments"
+        multiple={true}
         values={temperaments}
-        selectedValues={temperament}
+        selectedValues={newDogData.temperament}
         handleChange={handleChange}
+        keySelector={(value) => value.id}
       />
       {temperament && <p>{temperament}</p>}
       <button
@@ -147,6 +149,3 @@ const Create = () => {
 };
 
 export default Create;
-
-//ORDENAMIENTO dentro de los filtros -> filtros combinados
-//allDogs: state.allDosgCopy.filter(element => type === element.type)
