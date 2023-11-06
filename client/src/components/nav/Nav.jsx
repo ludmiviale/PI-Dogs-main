@@ -8,6 +8,7 @@ const Nav = ({
   handleFilterSource,
   handleFilterTemperament,
   handleSortAlphabetically,
+  handleSortByWeight,
 }) => {
   const temperaments = useSelector((state) => state.temperaments);
 
@@ -15,6 +16,7 @@ const Nav = ({
     <div>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
+          id="search"
           type="search"
           value={searchString}
           placeholder="Search breeds"
@@ -23,7 +25,7 @@ const Nav = ({
         <button type="submit">Search</button>
 
         <label htmlFor="source">Filter by source:</label>
-        <select name="source" onChange={handleFilterSource}>
+        <select id="source" name="source" onChange={handleFilterSource}>
           <option value="all">All</option>
           <option value="api">Api</option>
           <option value="database">Database</option>
@@ -38,9 +40,23 @@ const Nav = ({
         />
 
         <label htmlFor="sortAlphabetically">Sort alphabetically:</label>
-        <select name="sortAlphabetically" onChange={handleSortAlphabetically}>
+        <select
+          id="sortAlphabetically"
+          name="sortAlphabetically"
+          onChange={handleSortAlphabetically}
+        >
           <option value="ascending">A-Z</option>
           <option value="descending">Z-A</option>
+        </select>
+
+        <label htmlFor="sortByWeight">Sort by weight:</label>
+        <select
+          id="sortByWeight"
+          name="sortByWeight"
+          onChange={handleSortByWeight}
+        >
+          <option value="lowerWeight">Lower weight</option>
+          <option value="greaterWeight">Greater weight</option>
         </select>
       </form>
     </div>
