@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { dogsCleaner, getDogs, filterBySource } from "../../redux/actions";
+import {
+  dogsCleaner,
+  getDogs,
+  filterBySource,
+  filterByTemperament,
+  getAllTemperaments,
+} from "../../redux/actions";
 
 import Nav from "../../components/nav/Nav";
 import Cards from "../../components/cards/Cards";
@@ -34,6 +40,7 @@ const Home = () => {
   };
 
   useEffect(() => {
+    dispatch(getAllTemperaments());
     dispatch(dogsCleaner());
     let queryName = searchParams.get("name");
     queryName = queryName === null ? "" : queryName;
@@ -54,6 +61,7 @@ const Home = () => {
 
   const handleFilterTemperament = (event) => {
     dispatch(filterByTemperament(event.target.value));
+    setCurrentPage(1);
   };
 
   const handleFilterSource = (event) => {
