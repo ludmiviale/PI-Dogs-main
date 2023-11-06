@@ -4,6 +4,8 @@ import {
   DOGS_CLEANER,
   CREATE_DOG,
   GET_ALL_TEMPERAMENTS,
+  FILTER_BY_TEMPERAMENT,
+  FILTER_BY_SOURCE,
 } from "./action-types";
 import axios from "axios";
 
@@ -72,5 +74,19 @@ export const getAllTemperaments = () => {
     } catch (error) {
       throw Error(error.message);
     }
+  };
+};
+
+export const filterByTemperament = (value) => {
+  return {
+    type: FILTER_BY_TEMPERAMENT,
+    payload: value,
+  };
+};
+
+export const filterBySource = (value) => {
+  return {
+    type: FILTER_BY_SOURCE,
+    payload: value,
   };
 };
