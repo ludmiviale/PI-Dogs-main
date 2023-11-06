@@ -4,6 +4,7 @@ import {
   DOGS_CLEANER,
   CREATE_DOG,
   GET_ALL_TEMPERAMENTS,
+  FILTER_BY_TEMPERAMENT,
   FILTER_BY_SOURCE,
 } from "./action-types";
 
@@ -49,11 +50,21 @@ const reducer = (state = initialState, action) => {
         temperaments: action.payload,
       };
 
-    //case FILTER_BY_TEMPERAMENT:
+    case FILTER_BY_TEMPERAMENT:
+      const filterByTemperament = state.allDogs.filter((dog) => {
+        const temperamentsString = dog.temperament;
+        if (temperamentsString) {
+          const temperamentsArray = temperamentsString.split(", ");
+          return temperamentsArray.some((temp) => temp === action.payload);
+        }
+        return false;
+      });
+      return {
+        ...state,
+        allDogsCopy: filterByTemperament,
+      };
 
     case FILTER_BY_SOURCE:
-      console.log(action.payload);
-
       let filterBySource;
       if (action.payload === "all") {
         filterBySource = [...state.allDogs];
@@ -76,37 +87,3 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
-
-/*
-
-
-   let updatedStateWithTemperament = { ...state };
-      if (state.dogsFilteredBySource.length) {
-        const dogsByTemperamentAndSource = state.dogsFilteredBySource.filter(
-          (dog) =>
-            dog.temperaments.some(
-              (temperament) => temperament.name === action.payload
-            )
-        )
-        updatedStateWithTemperament.allDogsCopy = dogsByTemperamentAndSource;
-      }
-
-
-
-
-  if (action.payload === "All") {
-        allDogsCopy = [...state.allDogs];
-      } else if (action.payload === "Database") {
-        allDogsCopy = [...state.allDogsCopy].filter(
-          (dog) => typeof dog.id === "string"
-        );
-      } else {
-        allDogsCopy = [...state.allDogsCopy].filter(
-          (dog) => typeof dog.id === "number"
-        );
-      }
-      return {
-        ...state,
-        allDogsCopy: allDogsCopy,
-      };
-*/
