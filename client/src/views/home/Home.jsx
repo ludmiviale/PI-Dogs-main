@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { dogsCleaner, getDogs } from "../../redux/actions";
+import { dogsCleaner, getDogs, filterBySource } from "../../redux/actions";
 
 import Nav from "../../components/nav/Nav";
 import Cards from "../../components/cards/Cards";
@@ -10,7 +10,7 @@ import Pagination from "../../components/pagination/Pagination";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.allDogs);
+  const allDogsCopy = useSelector((state) => state.allDogsCopy);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchString, setSearchString] = useState("");
@@ -41,15 +41,24 @@ const Home = () => {
     fetchDogs(queryName);
   }, []);
 
-  const totalDogs = allDogs?.length;
+  const totalDogs = allDogsCopy?.length;
   const dogsPerPage = 8;
   const totalPages = Math.ceil(totalDogs / dogsPerPage);
   const startIndex = (currentPage - 1) * dogsPerPage;
   const endIndex = startIndex + dogsPerPage;
-  const dogsToDisplay = allDogs?.slice(startIndex, endIndex);
+  const dogsToDisplay = allDogsCopy?.slice(startIndex, endIndex);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+  };
+
+  const handleFilterTemperament = (event) => {
+    dispatch(filterByTemperament(event.target.value));
+  };
+
+  const handleFilterSource = (event) => {
+    dispatch(filterBySource(event.target.value));
+    setCurrentPage(1);
   };
 
   return (
@@ -59,13 +68,15 @@ const Home = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         searchString={searchString}
+        handleFilterTemperament={handleFilterTemperament}
+        handleFilterSource={handleFilterSource}
       />
       <Pagination
         onPageChange={handlePageChange}
         currentPage={currentPage}
         totalPages={totalPages}
       />
-      {allDogs.length > 0 ? (
+      {allDogsCopy.length > 0 ? (
         <Cards dogsToDisplay={dogsToDisplay} />
       ) : (
         <p>There are no dogs with that name</p>
