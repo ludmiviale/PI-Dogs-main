@@ -9,6 +9,7 @@ import {
   filterByTemperament,
   getAllTemperaments,
   sortAlphabetically,
+  sortByWeight,
 } from "../../redux/actions";
 
 import Nav from "../../components/nav/Nav";
@@ -75,6 +76,11 @@ const Home = () => {
     setCurrentPage(1);
   };
 
+  const handleSortByWeight = (event) => {
+    dispatch(sortByWeight(event.target.value));
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <p> Esta es la Home Page </p>
@@ -85,6 +91,7 @@ const Home = () => {
         handleFilterTemperament={handleFilterTemperament}
         handleFilterSource={handleFilterSource}
         handleSortAlphabetically={handleSortAlphabetically}
+        handleSortByWeight={handleSortByWeight}
       />
       <Pagination
         onPageChange={handlePageChange}
@@ -94,7 +101,7 @@ const Home = () => {
       {allDogsCopy.length > 0 ? (
         <Cards dogsToDisplay={dogsToDisplay} />
       ) : (
-        <p>There are no dogs with that name</p>
+        <p>There are no dogs</p>
       )}
     </div>
   );
