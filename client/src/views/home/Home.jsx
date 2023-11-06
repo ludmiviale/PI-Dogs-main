@@ -8,6 +8,7 @@ import {
   filterBySource,
   filterByTemperament,
   getAllTemperaments,
+  sortAlphabetically,
 } from "../../redux/actions";
 
 import Nav from "../../components/nav/Nav";
@@ -69,6 +70,11 @@ const Home = () => {
     setCurrentPage(1);
   };
 
+  const handleSortAlphabetically = (event) => {
+    dispatch(sortAlphabetically(event.target.value));
+    setCurrentPage(1);
+  };
+
   return (
     <div>
       <p> Esta es la Home Page </p>
@@ -78,6 +84,7 @@ const Home = () => {
         searchString={searchString}
         handleFilterTemperament={handleFilterTemperament}
         handleFilterSource={handleFilterSource}
+        handleSortAlphabetically={handleSortAlphabetically}
       />
       <Pagination
         onPageChange={handlePageChange}
