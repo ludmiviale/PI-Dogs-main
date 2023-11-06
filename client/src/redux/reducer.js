@@ -6,6 +6,7 @@ import {
   GET_ALL_TEMPERAMENTS,
   FILTER_BY_TEMPERAMENT,
   FILTER_BY_SOURCE,
+  SORT_ALPHABETICALLY,
 } from "./action-types";
 
 let initialState = {
@@ -14,6 +15,8 @@ let initialState = {
   dogDetail: [],
   newDog: [],
   temperaments: [],
+  dogsFilterByTemperament: [],
+  dogsFilterBySource: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -81,9 +84,57 @@ const reducer = (state = initialState, action) => {
         ...state,
         allDogsCopy: filterBySource,
       };
+
+    case SORT_ALPHABETICALLY:
+      let sortAlphabetically =
+        action.payload === "ascending"
+          ? [...state.allDogs].sort((a, b) => a.name.localeCompare(b.name))
+          : [...state.allDogs].sort((a, b) => b.name.localeCompare(a.name));
+      return {
+        ...state,
+        allDogsCopy: sortAlphabetically,
+      };
+
     default:
       return state;
   }
 };
 
 export default reducer;
+
+/*
+  case FILTER_BY_TEMPERAMENT:
+      let updatedStateWithTemperament = { ...state };
+      let dogsWithTemperamentAndSource;
+
+      if (state.dogsFilterBySource.length) {
+        // Filtrar por temperamento si ya existe un filtro por origen
+        dogsWithTemperamentAndSource = state.dogsFilterBySource.filter(
+          (dog) => {
+            const temperamentsString = dog.temperament;
+            if (temperamentsString) {
+              const temperamentsArray = temperamentsString.split(", ");
+              return temperamentsArray.some((temp) => temp === action.payload);
+            }
+            return false;
+          }
+        );
+      } else {
+        // Si no hay filtro por origen, filtrar directamente por temperamento
+        dogsWithTemperamentAndSource = state.allDogsCopy.filter((dog) => {
+          const temperamentsString = dog.temperament;
+          if (temperamentsString) {
+            const temperamentsArray = temperamentsString.split(", ");
+            return temperamentsArray.some((temp) => temp === action.payload);
+          }
+          return false;
+        });
+      }
+
+      // Actualizar el estado con los resultados del filtro
+      updatedStateWithTemperament.dogsFilterByTemperament =
+        dogsWithTemperamentAndSource;
+      updatedStateWithTemperament.allDogsCopy = dogsWithTemperamentAndSource;
+
+      return updatedStateWithTemperament;
+ */

@@ -6,6 +6,7 @@ import {
   GET_ALL_TEMPERAMENTS,
   FILTER_BY_TEMPERAMENT,
   FILTER_BY_SOURCE,
+  SORT_ALPHABETICALLY,
 } from "./action-types";
 import axios from "axios";
 
@@ -87,6 +88,13 @@ export const filterByTemperament = (value) => {
 export const filterBySource = (value) => {
   return {
     type: FILTER_BY_SOURCE,
+    payload: value,
+  };
+};
+
+export const sortAlphabetically = (value) => {
+  return {
+    type: SORT_ALPHABETICALLY,
     payload: value,
   };
 };
