@@ -1,0 +1,12 @@
+.home {
+    border: 2px solid #bbbaba;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px 40px;
+    margin: 20px;
+    width: 90vw;
+    text-align: center;
+    background-color: #cccccc;
+    transition: transform 0.2s;
+    font-size: larger;
+}

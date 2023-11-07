@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import "./home.css";
 
 import {
   dogsCleaner,
@@ -100,7 +101,7 @@ const Home = () => {
       {allDogsCopy.length > 0 ? (
         <Cards dogsToDisplay={dogsToDisplay} />
       ) : (
-        <p>There are no dogs</p>
+        <p className="home">There are no dogs</p>
       )}
     </div>
   );
