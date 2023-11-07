@@ -1,0 +1,49 @@
+.detail-container {
+  display: grid;
+  height: 100vh; 
+  place-items: center; 
+}
+
+.detail {
+  border: 2px solid #bbbaba;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 500px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 0.2s;
+}
+
+.detail h2 {
+  text-decoration: none;
+  color: #fea94b;
+  margin: 10px;
+}
+
+.detail img {
+  width: 100%;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+#id {
+  text-align: end;
+  font-style: italic;
+  font-size: large;
+}
+
+.home-link {
+  color: #fea94b;
+  text-align: right;
+}
+
+.home-link:visited {
+  color: #cc7e25;
+}
+
+.home-link img {
+  width: 150px;
+  align-items: start;
+  margin: 5px;
+}

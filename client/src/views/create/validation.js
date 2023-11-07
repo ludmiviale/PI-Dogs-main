@@ -25,16 +25,16 @@ const validation = (newDogData) => {
       "The maximum weight must be greater than the minimum weight";
   }
   if (!/^[0-9]{1,2}$/.test(newDogData.minLifeSpan)) {
-    errors.minLifeSpan = "Life span must be a maximum two-digit integer";
+    errors.minLifeSpan = "The life span must be a maximum two-digit integer";
   }
   if (!/^[0-9]{1,2}$/.test(newDogData.maxLifeSpan)) {
-    errors.maxLifeSpan = "Life span must be a maximum two-digit integer";
+    errors.maxLifeSpan = "The life span must be a maximum two-digit integer";
   }
   if (
     parseFloat(newDogData.maxLifeSpan) <= parseFloat(newDogData.minLifeSpan)
   ) {
     errors.maxLifeSpan =
-      "The maximum life span must be greater than the minimum life span";
+      "The maximum life span must be greater than the minimum";
   }
   if (!/https?:\/\/.*\.(?:png|jpg)/.test(newDogData.referenceImage)) {
     errors.referenceImage = "It has to be a valid url";

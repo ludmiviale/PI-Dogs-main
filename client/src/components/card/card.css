@@ -1,0 +1,41 @@
+.card {
+    border: 2px solid #bbbaba;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    width: 270px;
+    text-align: center;
+    background-color: #fff;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card a {
+    text-decoration: none;
+  }  
+
+  .card img {
+    width: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card a:link {
+    text-decoration: none;
+    color: #fea94b; 
+  }
+  
+  .card a:visited {
+    text-decoration: none;
+    color: #cc7e25; 
+  }
+
+  

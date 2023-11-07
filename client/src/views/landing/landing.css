@@ -1,0 +1,37 @@
+.landing-container {
+  display: grid;
+  height: 90vh;
+  place-items: center;
+}
+
+.landing {
+  border: 2px solid #bbbaba;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px 40px;
+  margin: 20px;
+  width: 500px;
+  height: 430px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 0.2s;
+  font-size: larger;
+}
+
+.landing p {
+    line-height: 1.5;
+    margin: 20px;
+  }
+
+.landing a {
+  color: #fea94b;
+  text-align: right;
+}
+
+.landing a:visited {
+  color: #cc7e25;
+}
+
+#first-span {
+  margin-top: 10px;
+}

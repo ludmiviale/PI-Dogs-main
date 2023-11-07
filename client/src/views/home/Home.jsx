@@ -83,7 +83,6 @@ const Home = () => {
 
   return (
     <div>
-      <p> Esta es la Home Page </p>
       <Nav
         handleChange={handleChange}
         handleSubmit={handleSubmit}

@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getDogById, dogsCleaner } from "../../redux/actions";
+import "./detail.css";
+import icon from "../../assets/icon.jpeg";
 
 const Detail = () => {
   const { id } = useParams();
@@ -17,16 +18,19 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <div>
-      <Link to="/home">Home</Link>
-
-      <h2>{dogDetail.name}</h2>
-      <p>{dogDetail.weight}</p>
-      <p>{dogDetail.height}</p>
-      <p>{dogDetail.life_span}</p>
-      <p>{dogDetail.temperament}</p>
-      <img src={dogDetail.reference_image_id} alt="dog photo" width="500px" />
-      <p>{dogDetail.id}</p>
+    <div className="detail-container">
+      <div className="detail">
+        <Link to="/home" className="home-link">
+          <img src={icon} />
+        </Link>
+        <h2>{dogDetail.name}</h2>
+        <p>Weight: {dogDetail.weight}</p>
+        <p>Height: {dogDetail.height}</p>
+        <p>Life span: {dogDetail.life_span}</p>
+        <p>Temperaments: {dogDetail.temperament}</p>
+        <img src={dogDetail.reference_image_id} alt="dog photo" />
+        <p id="id">{dogDetail.id}</p>
+      </div>
     </div>
   );
 };

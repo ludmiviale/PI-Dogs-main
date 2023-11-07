@@ -1,3 +1,5 @@
+import "./pagination.css";
+
 const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   const nextHandler = () => {
     if (currentPage < totalPages) {
@@ -12,22 +14,20 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={prevHandler} name="prev" disabled={currentPage === 1}>
-          {"<<"}
-        </button>
-        <p>
-          {currentPage}/{totalPages}
-        </p>
-        <button
-          onClick={nextHandler}
-          name="next"
-          disabled={currentPage === totalPages}
-        >
-          {">>"}
-        </button>
-      </div>
+    <div className="pagination">
+      <button onClick={prevHandler} name="prev" disabled={currentPage === 1}>
+        {"<<"}
+      </button>
+      <p>
+        {currentPage}/{totalPages}
+      </p>
+      <button
+        onClick={nextHandler}
+        name="next"
+        disabled={currentPage === totalPages}
+      >
+        {">>"}
+      </button>
     </div>
   );
 };

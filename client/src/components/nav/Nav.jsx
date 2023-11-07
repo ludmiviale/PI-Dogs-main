@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Select from "../select/Select";
+import "./nav.css";
 
 const Nav = ({
   handleChange,
@@ -13,53 +15,68 @@ const Nav = ({
   const temperaments = useSelector((state) => state.temperaments);
 
   return (
-    <div>
+    <nav className="nav">
       <form onSubmit={(event) => handleSubmit(event)}>
-        <input
-          id="search"
-          type="search"
-          value={searchString}
-          placeholder="Search breeds"
-          onChange={(event) => handleChange(event)}
-        />
-        <button type="submit">Search</button>
+        <div className="search-container">
+          <input
+            id="search"
+            type="search"
+            value={searchString}
+            placeholder="Search breeds"
+            onChange={(event) => handleChange(event)}
+          />
+          <button type="submit">Search</button>
+        </div>
 
-        <label htmlFor="source">Filter by source:</label>
-        <select id="source" name="source" onChange={handleFilterSource}>
-          <option value="all">All</option>
-          <option value="api">Api</option>
-          <option value="database">Database</option>
-        </select>
+        <div className="filters-container">
+          <div className="filter">
+            <label htmlFor="source">Filter by source:</label>
+            <select id="source" name="source" onChange={handleFilterSource}>
+              <option value="all">All</option>
+              <option value="api">Api</option>
+              <option value="database">Database</option>
+            </select>
+          </div>
 
-        <label htmlFor="temperament">Filter by temperament:</label>
-        <Select
-          name="temperaments"
-          values={temperaments}
-          handleChange={handleFilterTemperament}
-          keySelector={(value) => value.id}
-        />
+          <div className="filter">
+            <label htmlFor="temperament">Filter by temperament:</label>
+            <Select
+              name="temperaments"
+              values={temperaments}
+              handleChange={handleFilterTemperament}
+              keySelector={(value) => value.id}
+            />
+          </div>
 
-        <label htmlFor="sortAlphabetically">Sort alphabetically:</label>
-        <select
-          id="sortAlphabetically"
-          name="sortAlphabetically"
-          onChange={handleSortAlphabetically}
-        >
-          <option value="ascending">A-Z</option>
-          <option value="descending">Z-A</option>
-        </select>
+          <div className="filter">
+            <label htmlFor="sortAlphabetically">Sort alphabetically:</label>
+            <select
+              id="sortAlphabetically"
+              name="sortAlphabetically"
+              onChange={handleSortAlphabetically}
+            >
+              <option value="ascending">A-Z</option>
+              <option value="descending">Z-A</option>
+            </select>
+          </div>
 
-        <label htmlFor="sortByWeight">Sort by weight:</label>
-        <select
-          id="sortByWeight"
-          name="sortByWeight"
-          onChange={handleSortByWeight}
-        >
-          <option value="lowerWeight">Lower weight</option>
-          <option value="greaterWeight">Greater weight</option>
-        </select>
+          <div className="filter">
+            <label htmlFor="sortByWeight">Sort by weight:</label>
+            <select
+              id="sortByWeight"
+              name="sortByWeight"
+              onChange={handleSortByWeight}
+            >
+              <option value="lowerWeight">Lower weight</option>
+              <option value="greaterWeight">Greater weight</option>
+            </select>
+          </div>
+        </div>
+        <Link to="/create">
+          <button id="create">+</button>
+        </Link>
       </form>
-    </div>
+    </nav>
   );
 };
 
