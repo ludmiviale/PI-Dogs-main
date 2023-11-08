@@ -93,15 +93,15 @@ const reducer = (state = initialState, action) => {
     case SORT_ALPHABETICALLY:
       let sortAlphabetically =
         action.payload === "ascending"
-          ? [...state.allDogs].sort((a, b) => a.name.localeCompare(b.name))
-          : [...state.allDogs].sort((a, b) => b.name.localeCompare(a.name));
+          ? [...state.allDogsCopy].sort((a, b) => a.name.localeCompare(b.name))
+          : [...state.allDogsCopy].sort((a, b) => b.name.localeCompare(a.name));
       return {
         ...state,
         allDogsCopy: sortAlphabetically,
       };
 
     case SORT_BY_WEIGHT:
-      let sortByWeight = [...state.allDogs].sort((a, b) => {
+      let sortByWeight = [...state.allDogsCopy].sort((a, b) => {
         const weightA = a.weight.split(" - ");
         const weightB = b.weight.split(" - ");
         const weightValueA = parseFloat(weightA[0]);
