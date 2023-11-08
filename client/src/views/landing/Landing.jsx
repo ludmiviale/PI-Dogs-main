@@ -6,21 +6,20 @@ const Landing = () => {
   return (
     <div className="landing-container">
       <div className="landing">
+        <p>
+          Explore a variety of dog breeds with this dog search application, with
+          photos and a description of each one. You can search by name or by
+          temperament. You can sort them alphabetically or by weight. Also, you
+          can create new dog breeds and save them in your application.
+        </p>
+        <p>
+          Click on the dog to visit the Home page and start discovering this
+          canine diversity efficiently and quickly.
+        </p>
         <Link to="/home" className="home-link">
           <img src={icon} />
         </Link>
         <p>
-          Explore a variety of dog breeds with this dog search application. You
-          will find photos and a brief description of each breed. You can search
-          by name or by temperament. You can sort them alphabetically or by
-          weight. Additionally, you can create new dog breeds and save them in
-          your application.
-        </p>
-        <p>
-          Visit the Home page now and start discovering this canine diversity
-          efficiently and quickly.
-        </p>
-        <span>
           Created by{" "}
           <a
             href="https://www.linkedin.com/in/ludmila-grisel-viale/"
@@ -28,7 +27,7 @@ const Landing = () => {
           >
             Ludmila Grisel Viale
           </a>
-        </span>
+        </p>
       </div>
     </div>
   );
