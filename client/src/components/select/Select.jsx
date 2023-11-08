@@ -1,11 +1,4 @@
-const Select = ({
-  name,
-  multiple,
-  values,
-  selectedValues,
-  handleChange,
-  keySelector,
-}) => {
+const Select = ({ name, multiple, values, selectedValues, handleChange }) => {
   return (
     <select
       name={name}
@@ -15,7 +8,7 @@ const Select = ({
     >
       {values.map((value) => {
         return (
-          <option key={keySelector(value)} value={value.name}>
+          <option key={value.id} value={value.name}>
             {value.name}
           </option>
         );
