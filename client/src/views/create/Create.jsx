@@ -78,6 +78,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                min="1"
                 name="minWeight"
                 value={newDogData.minWeight}
                 onChange={handleChange}
@@ -90,6 +91,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                min="1"
                 name="maxWeight"
                 value={newDogData.maxWeight}
                 onChange={handleChange}
@@ -104,6 +106,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                min="1"
                 name="minHeight"
                 value={newDogData.minHeight}
                 onChange={handleChange}
@@ -115,6 +118,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                min="1"
                 name="maxHeight"
                 value={newDogData.maxHeight}
                 onChange={handleChange}
@@ -129,6 +133,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                min="1"
                 name="minLifeSpan"
                 value={newDogData.minLifeSpan}
                 onChange={handleChange}
@@ -141,6 +146,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                max="30"
                 name="maxLifeSpan"
                 value={newDogData.maxLifeSpan}
                 onChange={handleChange}
