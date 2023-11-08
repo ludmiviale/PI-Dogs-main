@@ -1,38 +1,34 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./home.css";
-
 import {
-  dogsCleaner,
   getDogs,
   filterBySource,
   filterByTemperament,
-  getAllTemperaments,
   sortAlphabetically,
   sortByWeight,
 } from "../../redux/actions";
-
 import Nav from "../../components/nav/Nav";
 import Cards from "../../components/cards/Cards";
 import Pagination from "../../components/pagination/Pagination";
+import "./home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allDogsCopy = useSelector((state) => state.allDogsCopy);
+  const { allDogs, allDogsCopy } = useSelector((state) => state);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchString, setSearchString] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const handleChange = (event) => {
-    setSearchString(event.target.value);
-  };
-
   const fetchDogs = (name) => {
     dispatch(getDogs(name)).then(() => {
       setCurrentPage(1);
     });
+  };
+
+  const handleChange = (event) => {
+    setSearchString(event.target.value);
   };
 
   const handleSubmit = (event) => {
@@ -43,12 +39,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllTemperaments());
-    dispatch(dogsCleaner());
     let queryName = searchParams.get("name");
     queryName = queryName === null ? "" : queryName;
     setSearchString(queryName);
-    fetchDogs(queryName);
   }, []);
 
   const totalDogs = allDogsCopy?.length;
@@ -98,10 +91,14 @@ const Home = () => {
         currentPage={currentPage}
         totalPages={totalPages}
       />
-      {allDogsCopy.length > 0 ? (
-        <Cards dogsToDisplay={dogsToDisplay} />
+      {allDogs.length > 0 ? (
+        !allDogsCopy.length ? (
+          <p className="home">There are no dogs</p>
+        ) : (
+          <Cards dogsToDisplay={dogsToDisplay} />
+        )
       ) : (
-        <p className="home">There are no dogs</p>
+        <p className="home">Loading</p>
       )}
     </div>
   );
