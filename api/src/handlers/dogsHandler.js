@@ -5,9 +5,6 @@ const createDog = require("../controllers/dogsControllers/createDog");
 const updateDog = require("../controllers/dogsControllers/updateDog");
 const deleteDog = require("../controllers/dogsControllers/deleteDog");
 
-// el handler es una función que se va a encargar de recibir la req, de unificar datos y devolver la respuesta
-// invoca al controller, porque el handler nunca interactúa con fuentes externas
-
 const getDogsHandler = async (req, res) => {
   const { name } = req.query;
   try {
