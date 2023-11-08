@@ -16,16 +16,20 @@ let initialState = {
   dogDetail: [],
   newDog: [],
   temperaments: [],
-  dogsFilterByTemperament: [],
-  dogsFilterBySource: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_DOGS:
+      if (!state.allDogs.length) {
+        return {
+          ...state,
+          allDogs: action.payload,
+          allDogsCopy: action.payload,
+        };
+      }
       return {
         ...state,
-        allDogs: action.payload,
         allDogsCopy: action.payload,
       };
 
@@ -38,7 +42,6 @@ const reducer = (state = initialState, action) => {
     case DOGS_CLEANER:
       return {
         ...state,
-        allDogs: [],
         dogDetail: [],
       };
 
@@ -46,6 +49,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         newDog: [...state.newDog, action.payload],
+        allDogs: [...state.allDogs, action.payload],
       };
 
     case GET_ALL_TEMPERAMENTS:
@@ -119,42 +123,3 @@ const reducer = (state = initialState, action) => {
 };
 
 export default reducer;
-
-/*
-  case FILTER_BY_TEMPERAMENT:
-      let updatedStateWithTemperament = { ...state };
-      let dogsWithTemperamentAndSource;
-
-      if (state.dogsFilterBySource.length) {
-        // Filtrar por temperamento si ya existe un filtro por origen
-        dogsWithTemperamentAndSource = state.dogsFilterBySource.filter(
-          (dog) => {
-            const temperamentsString = dog.temperament;
-            if (temperamentsString) {
-              const temperamentsArray = temperamentsString.split(", ");
-              return temperamentsArray.some((temp) => temp === action.payload);
-            }
-            return false;
-          }
-        );
-      } else {
-        // Si no hay filtro por origen, filtrar directamente por temperamento
-        dogsWithTemperamentAndSource = state.allDogsCopy.filter((dog) => {
-          const temperamentsString = dog.temperament;
-          if (temperamentsString) {
-            const temperamentsArray = temperamentsString.split(", ");
-            return temperamentsArray.some((temp) => temp === action.payload);
-          }
-          return false;
-        });
-      }
-
-      // Actualizar el estado con los resultados del filtro
-      updatedStateWithTemperament.dogsFilterByTemperament =
-        dogsWithTemperamentAndSource;
-      updatedStateWithTemperament.allDogsCopy = dogsWithTemperamentAndSource;
-
-      return updatedStateWithTemperament;
-
-
- */
