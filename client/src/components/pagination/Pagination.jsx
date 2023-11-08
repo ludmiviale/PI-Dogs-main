@@ -6,7 +6,6 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
       onPageChange(currentPage + 1);
     }
   };
-
   const prevHandler = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
