@@ -10,7 +10,6 @@ const server = express();
 
 server.name = "API";
 
-// para que el servidor no se rompa al querer crear una conexión con el browser
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
@@ -26,7 +25,6 @@ server.use((req, res, next) => {
   next();
 });
 
-// Configuramos un router principal, todos los endpoints llegarán acá y van para routes/index.js
 server.use(routes);
 
 server.use((err, req, res, next) => {
