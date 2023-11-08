@@ -3,7 +3,7 @@ require("dotenv").config();
 const { URL, API_KEY } = process.env;
 const { Temperament } = require("../../db");
 
-const getAllTemperaments = async (req, res) => {
+const getAllTemperaments = async () => {
   const { data } = await axios(`${URL}?api_key=${API_KEY}`);
 
   const temperamentsDB = await Temperament.findAll();

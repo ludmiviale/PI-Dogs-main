@@ -23,9 +23,7 @@ const getDogByName = async (name) => {
     },
   });
 
-  const results = [...dogFiltered, ...dogDB];
-
-  return results;
+  return [...dogFiltered, ...dogDB];
 };
 
 module.exports = getDogByName;
