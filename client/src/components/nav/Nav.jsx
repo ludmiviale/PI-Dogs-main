@@ -19,6 +19,7 @@ const Nav = ({
       <form onSubmit={(event) => handleSubmit(event)}>
         <div className="search-container">
           <input
+            autoComplete="off"
             id="search"
             type="search"
             value={searchString}
@@ -44,7 +45,6 @@ const Nav = ({
               name="temperaments"
               values={temperaments}
               handleChange={handleFilterTemperament}
-              keySelector={(value) => value.id}
             />
           </div>
 
@@ -73,7 +73,7 @@ const Nav = ({
           </div>
         </div>
         <Link to="/create">
-          <button id="create">+</button>
+          <button id="create">ADD</button>
         </Link>
       </form>
     </nav>

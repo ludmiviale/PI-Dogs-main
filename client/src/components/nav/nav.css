@@ -37,25 +37,16 @@
   font-size: 1rem;
 }
 
-.nav button[type="submit"] {
+.nav button{
   background-color: #fea94b;
   color: #fff;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
   cursor: pointer;
+  height: 37px;
 }
 
-#create {
-  background-color: #fea94b;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  font-size: x-large;
-  color: #fff;
-}
 
 .nav label,
 .nav select {
