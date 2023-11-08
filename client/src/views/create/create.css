@@ -131,7 +131,24 @@ button[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-#success {
-  font-size: large;
-  margin: 0;
+.success-container {
+  display: grid;
+  height: 100vh; 
+  place-items: center; 
+}
+
+.success {
+  border: 2px solid #bbbaba;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 500px;
+  text-align: center;
+  background-color: #fff;
+  transition: transform 0.2s;
+}
+
+.success p {
+  font-size: larger;
+  color: #fea94b;
 }

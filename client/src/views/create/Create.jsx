@@ -26,10 +26,6 @@ const Create = () => {
   const temperaments = useSelector((state) => state.temperaments);
 
   useEffect(() => {
-    if (!temperament.length) dispatch(getAllTemperaments());
-  }, []);
-
-  useEffect(() => {
     setErrors(validation(newDogData));
   }, [newDogData]);
 
@@ -58,129 +54,150 @@ const Create = () => {
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit} className="form">
-        <Link to="/home" className="home-link">
-          <img src={icon} />
-        </Link>
-        <h3>Dog breed creation form</h3>
-        <div className="name-field">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={newDogData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <p>{errors.name}</p>}
-        </div>
-
-        <div className="height">
-          <div className="height-fields">
-            <label htmlFor="minHeight">Minimun height:</label>
+      {!isDogCreated ? (
+        <form onSubmit={handleSubmit} className="form">
+          <Link to="/home" className="home-link">
+            <img src={icon} />
+          </Link>
+          <h3>Dog breed creation form</h3>
+          <div className="name-field">
+            <label htmlFor="name">Name:</label>
             <input
+              autoComplete="off"
               type="text"
-              name="minHeight"
-              value={newDogData.minHeight}
+              name="name"
+              value={newDogData.name}
               onChange={handleChange}
             />
-            {errors.minHeight && <p>{errors.minHeight}</p>}
+            {errors.name && <p>{errors.name}</p>}
           </div>
-          <div className="height-fields">
-            <label htmlFor="maxHeight">Maximum height:</label>
+
+          <div className="weight">
+            <div className="weight-fields">
+              <label htmlFor="minWeight">Minimun weight:</label>
+              <input
+                autoComplete="off"
+                type="number"
+                name="minWeight"
+                value={newDogData.minWeight}
+                onChange={handleChange}
+              />
+              {errors.minWeight && <p>{errors.minWeight}</p>}
+            </div>
+
+            <div className="weight-fields">
+              <label htmlFor="maxWeight">Maximum weight:</label>
+              <input
+                autoComplete="off"
+                type="number"
+                name="maxWeight"
+                value={newDogData.maxWeight}
+                onChange={handleChange}
+              />
+              {errors.maxWeight && <p>{errors.maxWeight}</p>}
+            </div>
+          </div>
+
+          <div className="height">
+            <div className="height-fields">
+              <label htmlFor="minHeight">Minimun height:</label>
+              <input
+                autoComplete="off"
+                type="number"
+                name="minHeight"
+                value={newDogData.minHeight}
+                onChange={handleChange}
+              />
+              {errors.minHeight && <p>{errors.minHeight}</p>}
+            </div>
+            <div className="height-fields">
+              <label htmlFor="maxHeight">Maximum height:</label>
+              <input
+                autoComplete="off"
+                type="number"
+                name="maxHeight"
+                value={newDogData.maxHeight}
+                onChange={handleChange}
+              />
+              {errors.maxHeight && <p>{errors.maxHeight}</p>}
+            </div>
+          </div>
+
+          <div className="life-span">
+            <div className="lif-span-fields">
+              <label htmlFor="minLifeSpan">Minimun life span:</label>
+              <input
+                autoComplete="off"
+                type="number"
+                name="minLifeSpan"
+                value={newDogData.minLifeSpan}
+                onChange={handleChange}
+              />
+              {errors.minLifeSpan && <p>{errors.minLifeSpan}</p>}
+            </div>
+
+            <div className="life-span-fields">
+              <label htmlFor="maxLifeSpan">Maximun life span:</label>
+              <input
+                autoComplete="off"
+                type="number"
+                name="maxLifeSpan"
+                value={newDogData.maxLifeSpan}
+                onChange={handleChange}
+              />
+              {errors.maxLifeSpan && <p>{errors.maxLifeSpan}</p>}
+            </div>
+          </div>
+
+          <div className="reference-image-field">
+            <label htmlFor="referenceImage">Image:</label>
             <input
+              autoComplete="off"
               type="text"
-              name="maxHeight"
-              value={newDogData.maxHeight}
+              name="referenceImage"
+              value={newDogData.referenceImage}
               onChange={handleChange}
             />
-            {errors.maxHeight && <p>{errors.maxHeight}</p>}
+            {errors.referenceImage && <p>{errors.referenceImage}</p>}
           </div>
-        </div>
 
-        <div className="weight">
-          <div className="weight-fields">
-            <label htmlFor="minWeight">Minimun weight:</label>
-            <input
-              type="text"
-              name="minWeight"
-              value={newDogData.minWeight}
-              onChange={handleChange}
+          <div className="selected-temperaments">
+            <label htmlFor="temperaments">
+              Temperaments:{" "}
+              {temperament.length > 0 && (
+                <p id="temperaments">{temperament.join(", ")}</p>
+              )}
+            </label>
+            <Select
+              name="temperaments"
+              multiple={true}
+              values={temperaments}
+              selectedValues={newDogData.temperament}
+              handleChange={handleChange}
             />
-            {errors.minWeight && <p>{errors.minWeight}</p>}
           </div>
 
-          <div className="weight-fields">
-            <label htmlFor="maxWeight">Maximum weight:</label>
-            <input
-              type="text"
-              name="maxWeight"
-              value={newDogData.maxWeight}
-              onChange={handleChange}
-            />
-            {errors.maxWeight && <p>{errors.maxWeight}</p>}
+          <button
+            type="submit"
+            disabled={
+              Object.keys(errors).length > 0 || temperament.length === 0
+            }
+          >
+            Create
+          </button>
+        </form>
+      ) : (
+        <>
+          <div className="success-container">
+            <div className="success">
+              <Link to="/home" className="home-link">
+                <img src={icon} />
+              </Link>
+              <p>Successfully created dog</p>
+            </div>
           </div>
-        </div>
-
-        <div className="life-span">
-          <div className="lif-span-fields">
-            <label htmlFor="minLifeSpan">Minimun life span:</label>
-            <input
-              type="text"
-              name="minLifeSpan"
-              value={newDogData.minLifeSpan}
-              onChange={handleChange}
-            />
-            {errors.minLifeSpan && <p>{errors.minLifeSpan}</p>}
-          </div>
-
-          <div className="life-span-fields">
-            <label htmlFor="maxLifeSpan">Maximun life span:</label>
-            <input
-              type="text"
-              name="maxLifeSpan"
-              value={newDogData.maxLifeSpan}
-              onChange={handleChange}
-            />
-            {errors.maxLifeSpan && <p>{errors.maxLifeSpan}</p>}
-          </div>
-        </div>
-
-        <div className="reference-image-field">
-          <label htmlFor="referenceImage">Image:</label>
-          <input
-            type="text"
-            name="referenceImage"
-            value={newDogData.referenceImage}
-            onChange={handleChange}
-          />
-          {errors.referenceImage && <p>{errors.referenceImage}</p>}
-        </div>
-
-        <div className="selected-temperaments">
-          <label htmlFor="temperaments">
-            Temperaments:{" "}
-            {temperament.length > 0 && (
-              <p id="temperaments">{temperament.join(", ")}</p>
-            )}
-          </label>
-          <Select
-            name="temperaments"
-            multiple={true}
-            values={temperaments}
-            selectedValues={newDogData.temperament}
-            handleChange={handleChange}
-            keySelector={(value) => value.id}
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={Object.keys(errors).length > 0 || temperament.length === 0}
-        >
-          Create
-        </button>
-        {isDogCreated && <p id="success">Successfully created dog</p>}
-      </form>
+        </>
+      )}
     </div>
   );
 };
