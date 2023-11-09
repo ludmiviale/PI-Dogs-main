@@ -101,6 +101,7 @@
 .life-span label,
 .life-span input {
   margin: 0 80px;
+  width: 139px;
 }
 
 .reference-image-field {
