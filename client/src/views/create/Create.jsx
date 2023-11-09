@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import validation from "./validation";
 import Select from "../../components/select/Select";
-import { createDog, getAllTemperaments } from "../../redux/actions";
+import { createDog } from "../../redux/actions";
 import "./create.css";
 import icon from "../../assets/icon.jpeg";
 
@@ -45,7 +45,7 @@ const Create = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
-      dispatch(createDog({ ...newDogData, temperaments: temperament }));
+      dispatch(createDog({ ...newDogData, temperament: temperament }));
       setIsDogCreated(true);
     } catch (error) {
       setIsDogCreated(false);
@@ -65,6 +65,7 @@ const Create = () => {
             <input
               autoComplete="off"
               type="text"
+              maxLength="255"
               name="name"
               value={newDogData.name}
               onChange={handleChange}
@@ -78,7 +79,9 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                step="any"
                 min="1"
+                max="99"
                 name="minWeight"
                 value={newDogData.minWeight}
                 onChange={handleChange}
@@ -91,7 +94,9 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                step="any"
                 min="1"
+                max="100"
                 name="maxWeight"
                 value={newDogData.maxWeight}
                 onChange={handleChange}
@@ -106,7 +111,9 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                step="any"
                 min="1"
+                max="99"
                 name="minHeight"
                 value={newDogData.minHeight}
                 onChange={handleChange}
@@ -118,7 +125,9 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                step="any"
                 min="1"
+                max="100"
                 name="maxHeight"
                 value={newDogData.maxHeight}
                 onChange={handleChange}
@@ -128,12 +137,13 @@ const Create = () => {
           </div>
 
           <div className="life-span">
-            <div className="lif-span-fields">
+            <div className="life-span-fields">
               <label htmlFor="minLifeSpan">Minimun life span:</label>
               <input
                 autoComplete="off"
                 type="number"
                 min="1"
+                max="29"
                 name="minLifeSpan"
                 value={newDogData.minLifeSpan}
                 onChange={handleChange}
@@ -146,6 +156,7 @@ const Create = () => {
               <input
                 autoComplete="off"
                 type="number"
+                min="1"
                 max="30"
                 name="maxLifeSpan"
                 value={newDogData.maxLifeSpan}
@@ -178,7 +189,7 @@ const Create = () => {
               name="temperaments"
               multiple={true}
               values={temperaments}
-              selectedValues={newDogData.temperament}
+              selectedValues={temperament}
               handleChange={handleChange}
             />
           </div>
