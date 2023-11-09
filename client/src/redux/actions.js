@@ -47,7 +47,7 @@ export const createDog = (newDogData) => {
     maxLifeSpan,
     minLifeSpan,
     referenceImage,
-    temperaments,
+    temperament,
   } = newDogData;
   const endpoint = "http://localhost:3001/dogs/";
   return async (dispatch) => {
@@ -58,9 +58,12 @@ export const createDog = (newDogData) => {
         weight: `${minWeight} - ${maxWeight}`,
         life_span: `${minLifeSpan} - ${maxLifeSpan}`,
         reference_image_id: referenceImage,
-        temperaments: temperaments,
+        temperament: temperament,
       });
-      return dispatch({ type: CREATE_DOG, payload: data });
+      return dispatch({
+        type: CREATE_DOG,
+        payload: { ...data, temperament: temperament.join(", ") },
+      });
     } catch (error) {
       throw Error(error.message);
     }
