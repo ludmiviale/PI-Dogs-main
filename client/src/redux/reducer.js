@@ -50,6 +50,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         newDog: [...state.newDog, action.payload],
         allDogs: [...state.allDogs, action.payload],
+        allDogsCopy: [...state.allDogsCopy, action.payload],
       };
 
     case GET_ALL_TEMPERAMENTS:
