@@ -40,7 +40,7 @@ const getBreedByIdHandler = async (req, res) => {
 };
 
 const createDogHandler = async (req, res) => {
-  const { name, height, weight, life_span, reference_image_id, temperaments } =
+  const { name, height, weight, life_span, reference_image_id, temperament } =
     req.body;
   try {
     const newDog = await createDog(
@@ -49,7 +49,7 @@ const createDogHandler = async (req, res) => {
       weight,
       life_span,
       reference_image_id,
-      temperaments
+      temperament
     );
     res.status(201).json(newDog);
   } catch (error) {
