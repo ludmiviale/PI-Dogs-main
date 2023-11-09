@@ -6,7 +6,7 @@ const createDog = async (
   weight,
   life_span,
   reference_image_id,
-  temperaments
+  temperament
 ) => {
   const newDog = await Dog.create({
     name,
@@ -18,7 +18,7 @@ const createDog = async (
 
   const allTemperaments = await Temperament.findAll({
     where: {
-      name: temperaments,
+      name: temperament,
     },
   });
 
