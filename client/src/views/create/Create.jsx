@@ -191,6 +191,7 @@ const Create = () => {
               values={temperaments}
               selectedValues={temperament}
               handleChange={handleChange}
+              includeAll={false}
             />
           </div>
 
