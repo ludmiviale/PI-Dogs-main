@@ -45,6 +45,7 @@ const Nav = ({
               name="temperaments"
               values={temperaments}
               handleChange={handleFilterTemperament}
+              includeAll={true}
             />
           </div>
 
