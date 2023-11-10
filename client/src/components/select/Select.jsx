@@ -1,4 +1,13 @@
-const Select = ({ name, multiple, values, selectedValues, handleChange }) => {
+const Select = ({
+  name,
+  multiple,
+  values,
+  selectedValues,
+  handleChange,
+  includeAll,
+}) => {
+  const options = includeAll ? [{ id: "all", name: "All" }, ...values] : values;
+
   return (
     <select
       name={name}
@@ -6,7 +15,7 @@ const Select = ({ name, multiple, values, selectedValues, handleChange }) => {
       value={selectedValues}
       onChange={handleChange}
     >
-      {values.map((value) => {
+      {options.map((value) => {
         return (
           <option key={value.id} value={value.name}>
             {value.name}
