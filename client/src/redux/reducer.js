@@ -16,6 +16,8 @@ let initialState = {
   dogDetail: [],
   newDog: [],
   temperaments: [],
+  isFilteredSource: false,
+  isFilteredTemperament: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,36 +61,59 @@ const reducer = (state = initialState, action) => {
         temperaments: action.payload,
       };
 
-    case FILTER_BY_TEMPERAMENT:
-      const filterByTemperament = state.allDogs.filter((dog) => {
-        const temperamentsString = dog.temperament;
-        if (temperamentsString) {
-          const temperamentsArray = temperamentsString.split(", ");
-          return temperamentsArray.some((temp) => temp === action.payload);
-        }
-        return false;
-      });
-      return {
-        ...state,
-        allDogsCopy: filterByTemperament,
-      };
-
     case FILTER_BY_SOURCE:
       let filterBySource;
+      let onlySource;
       if (action.payload === "all") {
         filterBySource = [...state.allDogs];
       } else if (action.payload === "database") {
-        filterBySource = [...state.allDogs].filter(
+        filterBySource = state.allDogs.filter(
           (dog) => typeof dog.id === "string"
         );
+        onlySource = state.allDogs.filter((dog) => typeof dog.id === "string");
       } else {
-        filterBySource = [...state.allDogs].filter(
-          (dog) => typeof dog.id == "number"
+        filterBySource = state.allDogs.filter(
+          (dog) => typeof dog.id === "number"
         );
+        onlySource = state.allDogs.filter((dog) => typeof dog.id === "number");
       }
       return {
         ...state,
-        allDogsCopy: filterBySource,
+        allDogsCopy: filterBySource.filter((dog) => {
+          if (state.isFilteredTemperament) {
+            return state.copyWithTemperamentFilter.includes(dog);
+          }
+          return true;
+        }),
+        copyWithSourceFilter: onlySource || filterBySource,
+        isFilteredSource: action.payload !== "all",
+      };
+
+    case FILTER_BY_TEMPERAMENT:
+      let filterByTemperament;
+      let onlyTemperaments;
+      if (action.payload === "All") {
+        filterByTemperament = [...state.allDogs];
+      } else {
+        filterByTemperament = state.allDogs.filter((dog) => {
+          const temperamentsArray = dog.temperament?.split(", ") || [];
+          return temperamentsArray.includes(action.payload);
+        });
+        onlyTemperaments = state.allDogs.filter((dog) => {
+          const temperamentsArray = dog.temperament?.split(", ") || [];
+          return temperamentsArray.includes(action.payload);
+        });
+      }
+      return {
+        ...state,
+        allDogsCopy: filterByTemperament.filter((dog) => {
+          if (state.isFilteredSource) {
+            return state.copyWithSourceFilter.includes(dog);
+          }
+          return true;
+        }),
+        copyWithTemperamentFilter: onlyTemperaments || filterByTemperament,
+        isFilteredTemperament: action.payload !== "All",
       };
 
     case SORT_ALPHABETICALLY:
