@@ -58,11 +58,13 @@ const Home = () => {
   const handleFilterTemperament = (event) => {
     dispatch(filterByTemperament(event.target.value));
     setCurrentPage(1);
+    setSearchParams("");
   };
 
   const handleFilterSource = (event) => {
     dispatch(filterBySource(event.target.value));
     setCurrentPage(1);
+    setSearchParams("");
   };
 
   const handleSortAlphabetically = (event) => {
