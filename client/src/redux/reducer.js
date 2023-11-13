@@ -3,6 +3,7 @@ import {
   GET_DOG_BY_ID,
   DOGS_CLEANER,
   CREATE_DOG,
+  DELETE_DOG,
   GET_ALL_TEMPERAMENTS,
   FILTER_BY_TEMPERAMENT,
   FILTER_BY_SOURCE,
@@ -53,6 +54,16 @@ const reducer = (state = initialState, action) => {
         newDog: [...state.newDog, action.payload],
         allDogs: [...state.allDogs, action.payload],
         allDogsCopy: [...state.allDogsCopy, action.payload],
+      };
+
+    case DELETE_DOG:
+      return {
+        ...state,
+        allDogs: state.allDogs.filter((dog) => dog.id !== action.payload),
+        allDogsCopy: state.allDogsCopy.filter(
+          (dog) => dog.id !== action.payload
+        ),
+        newDog: state.newDog.filter((dog) => dog.id !== action.payload),
       };
 
     case GET_ALL_TEMPERAMENTS:

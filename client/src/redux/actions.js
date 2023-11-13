@@ -3,6 +3,7 @@ import {
   GET_DOG_BY_ID,
   DOGS_CLEANER,
   CREATE_DOG,
+  DELETE_DOG,
   GET_ALL_TEMPERAMENTS,
   FILTER_BY_TEMPERAMENT,
   FILTER_BY_SOURCE,
@@ -64,6 +65,18 @@ export const createDog = (newDogData) => {
         type: CREATE_DOG,
         payload: { ...data, temperament: temperament.join(", ") },
       });
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
+};
+
+export const deleteDog = (id) => {
+  const endpoint = `http://localhost:3001/dogs/${id}`;
+  return async (dispatch) => {
+    try {
+      await axios.delete(endpoint);
+      return dispatch({ type: DELETE_DOG, payload: id });
     } catch (error) {
       throw Error(error.message);
     }
