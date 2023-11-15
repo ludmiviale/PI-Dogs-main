@@ -5,19 +5,16 @@ import {
   CREATE_DOG,
   DELETE_DOG,
   GET_ALL_TEMPERAMENTS,
-  FILTER_BY_TEMPERAMENT,
-  FILTER_BY_SOURCE,
-  SORT_ALPHABETICALLY,
-  SORT_BY_WEIGHT,
+  FILTERS_AND_SORTS,
 } from "./action-types";
 import axios from "axios";
 
-export const getDogs = (name) => {
-  const endpoint = `http://localhost:3001/dogs/?name=${name}`;
+export const getDogs = (filters, sort) => {
+  const endpoint = `http://localhost:3001/dogs`;
   return async (dispatch) => {
     try {
       const { data } = await axios(endpoint);
-      return dispatch({ type: GET_DOGS, payload: data });
+      return dispatch({ type: GET_DOGS, payload: { data, filters, sort } });
     } catch (error) {
       throw Error(error.message);
     }
@@ -95,30 +92,9 @@ export const getAllTemperaments = () => {
   };
 };
 
-export const filterByTemperament = (value) => {
+export const filtersAndSorts = (dogs, filters, sort) => {
   return {
-    type: FILTER_BY_TEMPERAMENT,
-    payload: value,
-  };
-};
-
-export const filterBySource = (value) => {
-  return {
-    type: FILTER_BY_SOURCE,
-    payload: value,
-  };
-};
-
-export const sortAlphabetically = (value) => {
-  return {
-    type: SORT_ALPHABETICALLY,
-    payload: value,
-  };
-};
-
-export const sortByWeight = (value) => {
-  return {
-    type: SORT_BY_WEIGHT,
-    payload: value,
+    type: FILTERS_AND_SORTS,
+    payload: { dogs, filters, sort },
   };
 };
