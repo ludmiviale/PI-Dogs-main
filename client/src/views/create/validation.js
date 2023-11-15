@@ -4,8 +4,8 @@ const validation = (newDogData, allDogsCopy) => {
   if (newDogData.name === "") {
     errors.name = "Please enter the name of the breed to create";
   }
-  if (newDogData.name.length > 255) {
-    errors.name = "The name must not be longer than 255 characters";
+  if (newDogData.name.length > 25) {
+    errors.name = "The name must not be longer than 25 characters";
   }
   for (const dog of allDogsCopy) {
     if (newDogData.name === dog.name || newDogData.name === dog.name + " ") {
