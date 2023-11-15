@@ -1,4 +1,4 @@
-const validation = (newDogData) => {
+const validation = (newDogData, allDogsCopy) => {
   let errors = {};
 
   if (newDogData.name === "") {
@@ -6,6 +6,11 @@ const validation = (newDogData) => {
   }
   if (newDogData.name.length > 255) {
     errors.name = "The name must not be longer than 255 characters";
+  }
+  for (const dog of allDogsCopy) {
+    if (newDogData.name === dog.name || newDogData.name === dog.name + " ") {
+      errors.name = "That breed of dog already exists";
+    }
   }
 
   if (!/^[0-9]{1,3}$|^[0-9]{1,3}\.[0-9]{1,3}$/.test(newDogData.minWeight)) {
