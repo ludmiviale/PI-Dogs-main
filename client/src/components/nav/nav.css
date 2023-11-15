@@ -28,13 +28,12 @@
 }
 
 .nav input[type="search"] {
-  width: 100%;
   max-width: 400px;
   padding: 10px;
-  border: none;
   border-radius: 4px;
-  margin-right: 10px;
-  font-size: 1rem;
+  background-color: #a9a6a3;
+  color: #fff;
+  border: none;
 }
 
 .nav button{
