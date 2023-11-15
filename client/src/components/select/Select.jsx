@@ -6,8 +6,6 @@ const Select = ({
   handleChange,
   includeAll,
 }) => {
-  const options = includeAll ? [{ id: "all", name: "All" }, ...values] : values;
-
   return (
     <select
       name={name}
@@ -15,7 +13,7 @@ const Select = ({
       value={selectedValues}
       onChange={handleChange}
     >
-      {options.map((value) => {
+      {values.map((value) => {
         return (
           <option key={value.id} value={value.name}>
             {value.name}
