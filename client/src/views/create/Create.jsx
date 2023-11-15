@@ -23,10 +23,10 @@ const Create = () => {
   const [isDogCreated, setIsDogCreated] = useState(false);
 
   const dispatch = useDispatch();
-  const temperaments = useSelector((state) => state.temperaments);
+  const { temperaments, allDogsCopy } = useSelector((state) => state);
 
   useEffect(() => {
-    setErrors(validation(newDogData));
+    setErrors(validation(newDogData, allDogsCopy));
   }, [newDogData]);
 
   const handleChange = (event) => {
@@ -191,7 +191,6 @@ const Create = () => {
               values={temperaments}
               selectedValues={temperament}
               handleChange={handleChange}
-              includeAll={false}
             />
           </div>
 
