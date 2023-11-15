@@ -23,10 +23,6 @@
     margin: 0 auto;
     object-fit: cover;
   }
-
-  .card:hover {
-    transform: translateY(-5px);
-  }
   
   .card a:link {
     text-decoration: none;
